@@ -1,0 +1,25 @@
+on: [ push, pull_request ]
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    name: Black
+    steps:
+      - uses: actions/checkout@v4
+      - uses: psf/black@stable
+
+  run_mypy:
+    runs-on: ubuntu-latest
+    name: Mypy
+    steps:
+      # To use this repository's private action,
+      # you must check out the repository
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run Mypy
+        uses: jashparekh/mypy-action@v2
+        with:
+          path: '.'
+          mypy_version: '0.910'
+          mypy_flags: '--verbose'
+          requirement_files: 'requirements.txt'
