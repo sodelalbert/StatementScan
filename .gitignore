@@ -55,3 +55,6 @@ docs/_build/
 
 # Excelude Excel fIles
 *.xlsx
+*.csv
+*.xls
+*.xlsm
