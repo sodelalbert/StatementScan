@@ -1,7 +1,24 @@
-from pathlib import Path
-
 import pandas as pd  # type: ignore
-from tabulate import tabulate  # type: ignore
+
+from dataclasses import dataclass, field
+from pathlib import Path
+from tabulate import tabulate
+from typing import Optional
+
+
+def print_df(df: pd.DataFrame, lines: int = None) -> None:
+    if lines is not None:
+        print(tabulate(df.head(lines), headers="keys", tablefmt="psql"))
+    else:
+        print(tabulate(df, headers="keys", tablefmt="psql"))
+
+
+@dataclass
+class ExpenseCategory:
+    name: str
+    filter: str = field(default=str, repr=False)
+    sum: Optional[float] = field(default=float)
+    data_frame: Optional[pd.DataFrame] = field(default=None, repr=False)
 
 
 class TransactionDataLoader:
@@ -67,8 +84,9 @@ class TransactionDataLoader:
         for col in float_columns:
             df[col] = df[col].str.replace(",", ".").astype(float)
 
-        # Set coherent column meaning for Millennium and ING by copying data from 'Tytuł' to 'Dane kontrahenta'
+        # TODO: Set datatype for date columns allowing better filtering by date.
 
+        # Set coherent column meaning for Millennium and ING by copying data from 'Tytuł' to 'Dane kontrahenta'
         df["Dane kontrahenta"] = df.apply(
             lambda row: (
                 row["Tytuł"]
@@ -78,13 +96,13 @@ class TransactionDataLoader:
             axis=1,
         )
 
-        # TODO: Copy blocked ammount of money to 'Kwota transakcji (waluta rachunku)'
+        # If Data transakcji is  empty, fill it with Data księgowania
         df.loc[
             df["Kwota transakcji (waluta rachunku)"].isna(),
             "Kwota transakcji (waluta rachunku)",
         ] = df["Kwota blokady/zwolnienie blokady"]
 
-        # TODO: Date of accounting of the transaction is not present
+        # For all blocked transactions fill the Kwota transakcji with tha blocked amount.
         df.loc[df["Data transakcji"].isna(), "Data transakcji"] = df["Data księgowania"]
 
         return df

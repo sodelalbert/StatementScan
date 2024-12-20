@@ -27,27 +27,31 @@ Filter to get only usefull columns for data processing.
 """
 
 # TODO: Fix it
-f_df = df[df['Data transakcji',
-     'Dane kontrahenta',
-     'Tytuł',
-     'Kwota transakcji (waluta rachunku)',
-     'Bank']]
+f_df = df[
+    df[
+        "Data transakcji",
+        "Dane kontrahenta",
+        "Tytuł",
+        "Kwota transakcji (waluta rachunku)",
+        "Bank",
+    ]
+]
 
 
-print(tabulate(f_df.head(50), headers='keys'))
+print(tabulate(f_df.head(50), headers="keys"))
 
 ...
 # --------------------------------------------------------------------------------------
-filtered = df[df['Dane kontrahenta'].str.contains("ZABKA|LIDL|BIEDRONKA") == True]
+filtered = df[df["Dane kontrahenta"].str.contains("ZABKA|LIDL|BIEDRONKA") == True]
 pass
 
-print(tabulate(df.head(20), headers='keys'))
+print(tabulate(df.head(20), headers="keys"))
 dict_df = df.to_dict()
 pass
 # Filtering Example
 
 filtered = df[df["Data transakcji"].str.contains("2024-12-01|2024-12-16") == True]
 filtered = df[df["Tytuł"].str.contains("ZABKA|LIDL|BIEDRONKA") == True]
-print(tabulate(filtered.head(10), headers='keys'))
+print(tabulate(filtered.head(10), headers="keys"))
 
 pass
