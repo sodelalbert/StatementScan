@@ -79,10 +79,12 @@ class TransactionDataLoader:
         )
 
         # TODO: Copy blocked ammount of money to 'Kwota transakcji (waluta rachunku)'
+        df.loc[
+            df["Kwota transakcji (waluta rachunku)"].isna(),
+            "Kwota transakcji (waluta rachunku)",
+        ] = df["Kwota blokady/zwolnienie blokady"]
 
         # TODO: Date of accounting of the transaction is not present
-
-       
-
+        df.loc[df["Data transakcji"].isna(), "Data transakcji"] = df["Data księgowania"]
 
         return df
