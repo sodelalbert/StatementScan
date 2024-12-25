@@ -84,8 +84,6 @@ class TransactionDataLoader:
         for col in float_columns:
             df[col] = df[col].str.replace(",", ".").astype(float)
 
-        # TODO: Set datatype for date columns allowing better filtering by date.
-
         # Set coherent column meaning for Millennium and ING by copying data from 'Tytuł' to 'Dane kontrahenta'
         df["Dane kontrahenta"] = df.apply(
             lambda row: (
