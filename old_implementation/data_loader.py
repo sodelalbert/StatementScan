@@ -1,4 +1,4 @@
-import pandas as pd  # type: ignore
+import pandas as pd
 
 from dataclasses import dataclass, field
 from pathlib import Path
