@@ -62,8 +62,9 @@ docs/_build/
 #Jupyter Notebook
 .ipynb_checkpoints
 
-# Data folder
-data
+# Data files
+.csv
+
 
 # uv
 uv.lock

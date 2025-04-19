@@ -29,3 +29,8 @@ Download bank statemnts and place them in `data` folder for further analysis.
 ```bash
 jupyter lab
 ```
+
+# VS Code Keys
+
+`opt + shift + ↓ / ↑` - Duplicate current line above/below
+
