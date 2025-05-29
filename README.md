@@ -1,6 +1,6 @@
-# Grocery Expace Analyser
+# Bank Statemen Analyser
 
-Data anlysis tool based on Jupyter Notebooks allowaing to categorize expances.
+Data anlysis tool based on Jupyter Notebooks allowaing to categorize expances based on bak statement data.
 
 Currently I use it to determine monthly grocery expances. This helps to determine inflation over the years.
 
