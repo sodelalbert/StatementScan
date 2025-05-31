@@ -1,4 +1,4 @@
-# Bank Statemen Analyser
+# Bank Statement Analyser
 
 Data anlysis tool based on Jupyter Notebooks allowaing to categorize expances based on bak statement data.
 
